@@ -1,23 +1,26 @@
-import { Star, Quote } from "lucide-react";
+import { Quote, ShieldCheck, IndianRupee, Hammer } from "lucide-react";
 
-const testimonials = [
+const promises = [
   {
+    Icon: Hammer,
     quote:
-      "As a first-time client, I was nervous about choosing a newer firm — but Ironspan's communication and craftsmanship blew me away. Our home was delivered ahead of schedule.",
-    name: "Priya Anand",
-    role: "Homeowner, Cliffside Residence",
+      "Our founding team has spent years on Bengaluru sites — from villas in Sarjapur to office fit-outs on ORR. We're bringing that craft to our own firm.",
+    name: "Founding Partner",
+    role: "Site & Execution",
   },
   {
+    Icon: IndianRupee,
     quote:
-      "They treated our café build-out like it was a flagship project. Honest pricing, sharp project management, and a finish quality you'd expect from much larger contractors.",
-    name: "Daniel Ortiz",
-    role: "Founder, Foundry Coffee Co.",
+      "Every quote is itemised in writing. No hidden material markups, no surprise change orders — just transparent pricing you can take to the bank.",
+    name: "Our Pricing Pledge",
+    role: "Founding Commitment",
   },
   {
+    Icon: ShieldCheck,
     quote:
-      "Ironspan brought fresh thinking and zero ego. They flagged issues early, kept us informed weekly, and the final walk-through had a punch list of two items.",
-    name: "Rachel Kim",
-    role: "Director of Operations, Northgate Logistics",
+      "As a new firm, our reputation is everything. We'll over-communicate, document everything, and treat your first walkthrough like our most important meeting.",
+    name: "Our Service Pledge",
+    role: "Founding Commitment",
   },
 ];
 
@@ -28,19 +31,19 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-widest text-accent">
-            Client voices
+            Why trust a new firm
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-            Early clients. Lasting trust.
+            No testimonials yet — but a clear set of promises.
           </h2>
           <p className={`mt-4 ${isDark ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-            We're a young company — and we earn every relationship through transparency,
-            craft, and follow-through.
+            We won't fake reviews we haven't earned. Instead, here's exactly what
+            every founding client of our Bengaluru firm can count on from day one.
           </p>
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
+          {promises.map((t) => (
             <figure
               key={t.name}
               className={`relative flex flex-col border p-8 ${
@@ -49,11 +52,9 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
                   : "border-border bg-card"
               }`}
             >
-              <Quote className="h-7 w-7 text-accent" />
-              <div className="mt-4 flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-                ))}
+              <div className="flex items-center gap-3">
+                <t.Icon className="h-7 w-7 text-accent" />
+                <Quote className="h-5 w-5 text-accent/50" />
               </div>
               <blockquote className={`mt-4 flex-1 text-sm leading-relaxed ${isDark ? "text-primary-foreground/85" : "text-foreground/85"}`}>
                 "{t.quote}"
@@ -75,10 +76,10 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
           }`}
         >
           {[
-            ["Licensed", "& Insured"],
-            ["OSHA 30", "Certified Crews"],
-            ["A+ Rating", "Local Builders Assoc."],
-            ["100%", "Client Referenceable"],
+            ["GST", "Registered Business"],
+            ["MSME", "Udyam Recognised"],
+            ["Insured", "Site & Liability Cover"],
+            ["Bengaluru", "Local Team On-Site"],
           ].map(([a, b]) => (
             <div key={a}>
               <div className="font-display text-2xl font-bold text-accent">{a}</div>
