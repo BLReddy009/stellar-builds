@@ -172,7 +172,8 @@ function Index() {
 
       {/* CTA */}
       <section className="bg-primary text-primary-foreground">
-
+      <Testimonials />
+      <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 md:flex md:items-center md:justify-between md:gap-12">
           <div>
             <h2 className="font-display text-3xl font-bold md:text-5xl">Ready to break ground?</h2>
