@@ -142,6 +142,7 @@ function Index() {
 
       {/* What we can build */}
       <section className="mx-auto max-w-7xl px-6 py-24">
+        <section className="mx-auto max-w-7xl px-6 pb-4 pt-0" />
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we can build</span>
