@@ -56,10 +56,10 @@ function ContactPage() {
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-5">
         <div className="space-y-6 md:col-span-2">
           {[
-            { Icon: MapPin, t: "Office", d: "1240 Foundry Ave, Suite 300" },
-            { Icon: Phone, t: "Phone", d: "(555) 248-9100" },
-            { Icon: Mail, t: "Email", d: "build@ironspan.co" },
-            { Icon: Clock, t: "Hours", d: "Mon–Fri, 8am–6pm" },
+          { Icon: MapPin, t: "Office", d: "HSR Layout, Bengaluru — 560102" },
+            { Icon: Phone, t: "Phone", d: "+91 80 4567 8910" },
+            { Icon: Mail, t: "Email", d: "hello@ironspan.in" },
+            { Icon: Clock, t: "Hours", d: "Mon–Sat, 9am–7pm IST" },
           ].map(({ Icon, t, d }) => (
             <div key={t} className="flex items-start gap-4 border border-border bg-card p-6">
               <Icon className="h-5 w-5 text-accent" />
