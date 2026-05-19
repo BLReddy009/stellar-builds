@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Award } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Testimonials } from "@/components/Testimonials";
 import heroImg from "@/assets/hero-construction.jpg";
 import residentialImg from "@/assets/project-residential.jpg";
 import commercialImg from "@/assets/project-commercial.jpg";
