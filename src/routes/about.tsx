@@ -6,10 +6,10 @@ import { ArrowRight, Target, Users, Leaf } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Ironspan Construction" },
-      { name: "description", content: "Ironspan Construction is a residential and commercial builder driven by craftsmanship, safety, and accountability." },
-      { property: "og:title", content: "About — Ironspan Construction" },
-      { property: "og:description", content: "Meet the team behind Ironspan Construction." },
+      { title: "About — Chiguru Builders" },
+      { name: "description", content: "Chiguru Builders is a residential and commercial builder driven by craftsmanship, safety, and accountability." },
+      { property: "og:title", content: "About — Chiguru Builders" },
+      { property: "og:description", content: "Meet the team behind Chiguru Builders." },
     ],
   }),
   component: AboutPage,
@@ -25,7 +25,7 @@ function AboutPage() {
             A builder built on integrity.
           </h1>
           <p className="mt-6 max-w-2xl text-muted-foreground">
-            Ironspan is a new Bengaluru construction firm founded by a team with deep
+            Chiguru Builders is a new Bengaluru construction firm founded by a team with deep
             on-site experience across residential villas, office fit-outs, and warehouse
             builds. We're actively searching for our first projects — and we're ready
             to over-deliver to earn our reputation.
@@ -54,7 +54,7 @@ function AboutPage() {
           <h2 className="max-w-3xl font-display text-3xl font-bold md:text-4xl">
             "We're new — and that's exactly why your first project will be our most important one."
           </h2>
-          <p className="mt-6 text-primary-foreground/70">— Founding Team, Ironspan Bengaluru</p>
+          <p className="mt-6 text-primary-foreground/70">— Founding Team, Chiguru Builders Bengaluru</p>
           <Link to="/quote" className="mt-10 inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:brightness-95">
             Start your project <ArrowRight className="h-4 w-4" />
           </Link>

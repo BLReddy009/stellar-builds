@@ -5,9 +5,9 @@ import { Home, Building2, Factory, Hammer, Ruler, Wrench, ArrowRight } from "luc
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Ironspan Construction" },
+      { title: "Services — Chiguru Builders" },
       { name: "description", content: "Residential, commercial, and industrial construction services: design-build, general contracting, renovations, and more." },
-      { property: "og:title", content: "Services — Ironspan Construction" },
+      { property: "og:title", content: "Services — Chiguru Builders" },
       { property: "og:description", content: "Design-build, general contracting, and renovations for residential and commercial projects." },
     ],
   }),

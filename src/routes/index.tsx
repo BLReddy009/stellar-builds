@@ -11,9 +11,9 @@ import industrialImg from "@/assets/project-industrial.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ironspan Construction — Residential & Commercial Builders" },
-      { name: "description", content: "Ironspan builds award-winning residential and commercial projects on time and on budget. Request a free quote today." },
-      { property: "og:title", content: "Ironspan Construction" },
+      { title: "Chiguru Builders — Residential & Commercial Builders" },
+      { name: "description", content: "Chiguru Builders builds award-winning residential and commercial projects on time and on budget. Request a free quote today." },
+      { property: "og:title", content: "Chiguru Builders" },
       { property: "og:description", content: "Residential & commercial builders. Request a free quote." },
     ],
   }),
@@ -111,7 +111,7 @@ function Index() {
       <section className="bg-secondary py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Why Ironspan</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Why Chiguru Builders</span>
             <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
               A builder you can trust with your blueprint.
             </h2>
