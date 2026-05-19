@@ -21,6 +21,7 @@ const schema = z.object({
   email: z.string().trim().email().max(255),
   phone: z.string().trim().min(7).max(30),
   projectType: z.string().min(1),
+  package: z.string().min(1),
   budget: z.string().min(1),
   timeline: z.string().min(1),
   location: z.string().trim().min(1).max(150),
@@ -96,6 +97,8 @@ function QuotePage() {
                 <Input label="Project Location" name="location" error={errors.location} />
                 <Select label="Project Type" name="projectType" error={errors.projectType}
                   options={["Residential — Custom Home", "Residential — Renovation", "Commercial — New Build", "Commercial — Tenant Improvement", "Industrial / Warehouse", "Other"]} />
+                <Select label="Preferred Package" name="package" error={errors.package}
+                  options={["Silver — Essential", "Gold — Most Popular", "Platinum — Signature", "Custom mix", "Not sure yet"]} />
                 <Select label="Estimated Budget" name="budget" error={errors.budget}
                   options={["Under ₹25 Lakh", "₹25L – ₹1 Crore", "₹1 – 5 Crore", "₹5 – 20 Crore", "₹20 Crore+"]} />
                 <Select label="Timeline" name="timeline" error={errors.timeline}

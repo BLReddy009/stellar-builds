@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Award } from "lucide-react";
+import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Award, Check, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Testimonials } from "@/components/Testimonials";
 import heroImg from "@/assets/hero-construction.jpg";
@@ -142,6 +142,9 @@ function Index() {
 
       {/* What we can build */}
       <section className="mx-auto max-w-7xl px-6 py-24">
+        <PlansTeaser />
+      </section>
+      <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we can build</span>
@@ -192,5 +195,59 @@ function Index() {
         </div>
       </section>
     </SiteLayout>
+  );
+}
+
+function PlansTeaser() {
+  const tiers = [
+    { name: "Silver", price: "₹1,799", tag: "Essential", items: ["Fe 500 TMT, OPC 43", "Vitrified tile flooring", "Weekly site visits"] },
+    { name: "Gold", price: "₹2,499", tag: "Most popular", items: ["Fe 550D TMT, AAC blocks", "Premium quartz + modular kitchen", "Dedicated project manager"], featured: true },
+    { name: "Platinum", price: "₹3,499", tag: "Signature", items: ["Italian marble + imported finishes", "Smart-home pre-wiring", "Daily on-site engineer"] },
+  ];
+  return (
+    <div>
+      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="max-w-xl">
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Build packages</span>
+          <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
+            Silver, Gold or Platinum — your call.
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Three transparent tiers with itemised material brands and service levels.
+            Mix and match if you need a custom spec.
+          </p>
+        </div>
+        <Link to="/plans" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
+          Compare all packages <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {tiers.map((t) => (
+          <div key={t.name} className={`relative flex flex-col border bg-card p-8 ${t.featured ? "border-accent" : "border-border"}`}>
+            {t.featured && (
+              <span className="absolute -top-3 left-8 inline-flex items-center gap-1 bg-accent px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-foreground">
+                <Sparkles className="h-3 w-3" /> {t.tag}
+              </span>
+            )}
+            {!t.featured && <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.tag}</span>}
+            <h3 className="mt-4 font-display text-2xl font-bold">{t.name}</h3>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="font-display text-3xl font-bold text-accent">{t.price}</span>
+              <span className="text-xs text-muted-foreground">/ sqft</span>
+            </div>
+            <ul className="mt-6 flex-1 space-y-2">
+              {t.items.map((i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-foreground/85">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" /> {i}
+                </li>
+              ))}
+            </ul>
+            <Link to="/plans" className="mt-8 inline-flex items-center justify-center gap-2 border border-foreground bg-background px-4 py-2.5 text-sm font-semibold hover:bg-foreground hover:text-background">
+              See full spec
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
