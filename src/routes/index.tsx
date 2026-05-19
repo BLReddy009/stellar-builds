@@ -140,22 +140,26 @@ function Index() {
         </div>
       </section>
 
-      {/* Featured projects */}
+      {/* What we can build */}
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Recent work</span>
-            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Featured projects.</h2>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we can build</span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Project types we're ready for.</h2>
+            <p className="mt-3 max-w-xl text-muted-foreground">
+              Our portfolio is just getting started. Here's the scope of work our
+              founding team has hands-on experience delivering.
+            </p>
           </div>
-          <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
-            See full portfolio <ArrowRight className="h-4 w-4" />
+          <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
+            See all services <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
-            { img: residentialImg, cat: "Residential", title: "Cliffside Residence", loc: "Pacific Heights" },
-            { img: commercialImg, cat: "Commercial", title: "Foundry Tower", loc: "Downtown Core" },
-            { img: industrialImg, cat: "Industrial", title: "Northgate Distribution", loc: "Port District" },
+            { img: residentialImg, cat: "Residential", title: "Independent Homes & Villas", loc: "G+2 builds, plot to handover" },
+            { img: commercialImg, cat: "Commercial", title: "Office & Retail Fit-outs", loc: "Bengaluru tech corridors" },
+            { img: industrialImg, cat: "Industrial", title: "Warehouse & Light Industrial", loc: "Peripheral ring-road belt" },
           ].map((p) => (
             <div key={p.title} className="group overflow-hidden border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">
