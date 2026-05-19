@@ -1,26 +1,189 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Award } from "lucide-react";
+import { SiteLayout } from "@/components/SiteLayout";
+import heroImg from "@/assets/hero-construction.jpg";
+import residentialImg from "@/assets/project-residential.jpg";
+import commercialImg from "@/assets/project-commercial.jpg";
+import industrialImg from "@/assets/project-industrial.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ironspan Construction — Residential & Commercial Builders" },
+      { name: "description", content: "Ironspan builds award-winning residential and commercial projects on time and on budget. Request a free quote today." },
+      { property: "og:title", content: "Ironspan Construction" },
+      { property: "og:description", content: "Residential & commercial builders. Request a free quote." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <SiteLayout>
+      {/* Hero */}
+      <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
+        <img
+          src={heroImg}
+          alt="Modern construction site at golden hour"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/30" />
+        <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-40">
+          <span className="inline-flex items-center gap-2 border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
+            <span className="h-1.5 w-1.5 bg-accent" /> Building since 2008
+          </span>
+          <h1 className="mt-6 max-w-3xl font-display text-5xl font-bold leading-[1.05] md:text-7xl">
+            We build what others <span className="text-accent">only draw.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
+            From custom homes to landmark commercial developments, Ironspan delivers
+            uncompromising craftsmanship — on time, on budget, every project.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              to="/quote"
+              className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
+            >
+              Get a Free Quote <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary-foreground/10"
+            >
+              View Our Work
+            </Link>
+          </div>
+        </div>
+
+        {/* Stats strip */}
+        <div className="relative border-t border-primary-foreground/10 bg-primary/95">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-primary-foreground/10 px-6 md:grid-cols-4">
+            {[
+              ["240+", "Projects Delivered"],
+              ["17yrs", "In Business"],
+              ["$420M", "Built Value"],
+              ["98%", "On-Time Delivery"],
+            ].map(([n, l]) => (
+              <div key={l} className="py-8 pl-6 first:pl-0">
+                <div className="font-display text-3xl font-bold text-accent md:text-4xl">{n}</div>
+                <div className="mt-1 text-xs uppercase tracking-wider text-primary-foreground/60">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services preview */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="max-w-xl">
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we do</span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
+              End-to-end construction expertise.
+            </h2>
+          </div>
+          <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
+            Explore all services <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            { Icon: Home, title: "Residential", desc: "Custom homes, multi-family, and renovations crafted to last generations." },
+            { Icon: Building2, title: "Commercial", desc: "Offices, retail, and mixed-use developments built for performance." },
+            { Icon: Factory, title: "Industrial", desc: "Warehouses and facilities engineered for scale and efficiency." },
+          ].map(({ Icon, title, desc }) => (
+            <div key={title} className="group border border-border bg-card p-8 transition hover:border-accent">
+              <Icon className="h-8 w-8 text-accent" />
+              <h3 className="mt-6 font-display text-xl font-semibold">{title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="bg-secondary py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Why Ironspan</span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
+              A builder you can trust with your blueprint.
+            </h2>
+            <p className="mt-6 text-muted-foreground">
+              We combine field-tested craftsmanship with modern project management
+              to deliver buildings that owners are proud of and tenants love.
+            </p>
+            <Link to="/about" className="mt-8 inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110">
+              Learn about us <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { Icon: ShieldCheck, t: "Licensed & Insured", d: "Full coverage, every project." },
+              { Icon: Clock, t: "On-Time Delivery", d: "98% milestone accuracy." },
+              { Icon: Award, t: "Award-Winning", d: "12 industry honors since 2018." },
+              { Icon: Hammer, t: "Master Craftsmen", d: "In-house experienced crews." },
+            ].map(({ Icon, t, d }) => (
+              <div key={t} className="border border-border bg-card p-6">
+                <Icon className="h-6 w-6 text-accent" />
+                <div className="mt-4 font-display text-base font-semibold">{t}</div>
+                <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured projects */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Recent work</span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Featured projects.</h2>
+          </div>
+          <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
+            See full portfolio <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            { img: residentialImg, cat: "Residential", title: "Cliffside Residence", loc: "Pacific Heights" },
+            { img: commercialImg, cat: "Commercial", title: "Foundry Tower", loc: "Downtown Core" },
+            { img: industrialImg, cat: "Industrial", title: "Northgate Distribution", loc: "Port District" },
+          ].map((p) => (
+            <div key={p.title} className="group overflow-hidden border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={p.img} alt={p.title} loading="lazy" width={1280} height={960} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-semibold uppercase tracking-wider text-accent">{p.cat}</span>
+                <h3 className="mt-2 font-display text-lg font-semibold">{p.title}</h3>
+                <p className="text-sm text-muted-foreground">{p.loc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:flex md:items-center md:justify-between md:gap-12">
+          <div>
+            <h2 className="font-display text-3xl font-bold md:text-5xl">Ready to break ground?</h2>
+            <p className="mt-4 max-w-xl text-primary-foreground/70">
+              Tell us about your project. We'll respond within one business day with next steps and a no-obligation estimate.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3 md:mt-0">
+            <Link to="/quote" className="bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground hover:brightness-95">Get a Quote</Link>
+            <Link to="/contact" className="border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10">Contact Us</Link>
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
+  );
 }
