@@ -2,7 +2,54 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useState } from "react";
 import { z } from "zod";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Wrench } from "lucide-react";
+const materialCategories = [
+  {
+    name: "tmt",
+    label: "TMT Steel",
+    options: ["No preference", "Fe 500 — Standard brand", "Fe 550D — Tata Tiscon", "Fe 550D — JSW Neosteel", "Fe 550D — Kamdhenu"],
+  },
+  {
+    name: "cement",
+    label: "Cement",
+    options: ["No preference", "OPC 43 — UltraTech", "OPC 53 — UltraTech / ACC", "PPC + waterproofing — Premium"],
+  },
+  {
+    name: "bricks",
+    label: "Bricks / Blocks",
+    options: ["No preference", "Red clay bricks", "Concrete solid blocks", "AAC blocks — Magicrete / Siporex"],
+  },
+  {
+    name: "flooring",
+    label: "Flooring",
+    options: ["No preference", "2x2 vitrified tiles", "Large-format vitrified", "Wooden — engineered", "Italian marble", "Granite"],
+  },
+  {
+    name: "kitchen",
+    label: "Kitchen Counter",
+    options: ["No preference", "Granite — standard", "Quartz — premium", "Imported quartz", "Italian marble"],
+  },
+  {
+    name: "bath",
+    label: "Bath Fittings",
+    options: ["No preference", "Cera / Parryware standard", "Jaquar mid-line", "Kohler / Grohe premium", "Duravit / signature imported"],
+  },
+  {
+    name: "paint",
+    label: "Paint",
+    options: ["No preference", "Asian Tractor Emulsion", "Asian Royale interior", "Royale Luxe + Apex exterior", "Textured exterior finish"],
+  },
+  {
+    name: "electrical",
+    label: "Electrical Fittings",
+    options: ["No preference", "Anchor / Polycab standard", "Havells / Legrand premium", "Schneider designer range", "Smart-home automation"],
+  },
+  {
+    name: "doors",
+    label: "Doors & Windows",
+    options: ["No preference", "Flush doors + aluminium windows", "Solid wood + UPVC windows", "Teak doors + premium UPVC", "Designer wood + aluminium cladding"],
+  },
+];
 
 export const Route = createFileRoute("/quote")({
   head: () => ({
@@ -26,7 +73,7 @@ const schema = z.object({
   timeline: z.string().min(1),
   location: z.string().trim().min(1).max(150),
   details: z.string().trim().min(1).max(2000),
-});
+}).passthrough();
 
 function QuotePage() {
   const [submitted, setSubmitted] = useState(false);
@@ -109,6 +156,35 @@ function QuotePage() {
                 <textarea name="details" rows={6} placeholder="Tell us about the scope, site, and any specific requirements..." className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm outline-none focus:border-accent" />
                 {errors.details && <span className="mt-1 block text-xs text-destructive">{errors.details}</span>}
               </label>
+
+              <div className="border-t border-border pt-8">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent/10">
+                    <Wrench className="h-5 w-5 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold">Customise your materials</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Optional — pick exactly what you want and we'll price the build around your spec. Leave on "No preference" and we'll recommend based on your package.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-5 md:grid-cols-2">
+                  {materialCategories.map((m) => (
+                    <MaterialSelect key={m.name} label={m.label} name={`material_${m.name}`} options={m.options} />
+                  ))}
+                </div>
+                <label className="mt-5 block">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Other material preferences</span>
+                  <textarea
+                    name="material_notes"
+                    rows={3}
+                    placeholder="Any specific brand, finish, or supplier you'd like us to source from..."
+                    className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
+                  />
+                </label>
+              </div>
+
               <button type="submit" className="w-full bg-accent px-6 py-4 text-sm font-semibold text-accent-foreground hover:brightness-95">
                 Request Quote
               </button>
@@ -139,6 +215,21 @@ function Select({ label, name, options, error }: { label: string; name: string; 
         {options.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
       {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
+    </label>
+  );
+}
+
+function MaterialSelect({ label, name, options }: { label: string; name: string; options: string[] }) {
+  return (
+    <label className="block">
+      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</span>
+      <select
+        name={name}
+        defaultValue={options[0]}
+        className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm outline-none focus:border-accent"
+      >
+        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+      </select>
     </label>
   );
 }
