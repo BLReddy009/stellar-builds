@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Testimonials } from "@/components/Testimonials";
 import { ArrowRight, Target, Users, Leaf } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -44,6 +45,8 @@ function AboutPage() {
           </div>
         ))}
       </section>
+
+      <Testimonials variant="dark" />
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20">
