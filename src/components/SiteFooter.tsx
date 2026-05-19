@@ -10,7 +10,7 @@ export function SiteFooter() {
             <span className="flex h-9 w-9 items-center justify-center bg-accent text-accent-foreground">
               <HardHat className="h-5 w-5" />
             </span>
-            CHIGURU
+            CHIGURU BUILDERS
           </div>
           <p className="mt-4 max-w-sm text-sm text-primary-foreground/70">
             A new Bengaluru construction firm building homes, offices, and commercial
