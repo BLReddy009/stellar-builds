@@ -171,7 +171,6 @@ function Index() {
       </section>
 
       {/* CTA */}
-      <section className="bg-primary text-primary-foreground">
       <Testimonials />
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 md:flex md:items-center md:justify-between md:gap-12">
