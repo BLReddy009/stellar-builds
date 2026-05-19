@@ -5,9 +5,9 @@ import { Check, Minus, Sparkles, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/plans")({
   head: () => ({
     meta: [
-      { title: "Construction Plans — Silver, Gold & Platinum | Ironspan Bengaluru" },
+      { title: "Construction Plans — Silver, Gold & Platinum | Chiguru Builders Bengaluru" },
       { name: "description", content: "Choose Silver, Gold, or Platinum construction packages. Transparent per-sqft pricing in Bengaluru with varying material grades and service levels." },
-      { property: "og:title", content: "Construction Plans — Ironspan Bengaluru" },
+      { property: "og:title", content: "Construction Plans — Chiguru Builders Bengaluru" },
       { property: "og:description", content: "Silver, Gold and Platinum build packages with transparent material specs." },
     ],
   }),

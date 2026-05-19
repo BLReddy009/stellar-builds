@@ -10,7 +10,7 @@ export function SiteFooter() {
             <span className="flex h-9 w-9 items-center justify-center bg-accent text-accent-foreground">
               <HardHat className="h-5 w-5" />
             </span>
-            IRONSPAN
+            CHIGURU BUILDERS
           </div>
           <p className="mt-4 max-w-sm text-sm text-primary-foreground/70">
             A new Bengaluru construction firm building homes, offices, and commercial
@@ -32,13 +32,13 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-accent" />HSR Layout, Bengaluru — 560102</li>
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-accent" />+91 80 4567 8910</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" />hello@ironspan.in</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" />hello@chigurubuilders.in</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-6 text-xs text-primary-foreground/50 md:flex-row">
-          <span>© {new Date().getFullYear()} Ironspan Construction Pvt. Ltd. · Bengaluru, India</span>
+          <span>© {new Date().getFullYear()} Chiguru Builders Pvt. Ltd. · Bengaluru, India</span>
           <span>GST Registered · MSME Udyam · Site Insured</span>
         </div>
       </div>

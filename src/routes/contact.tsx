@@ -7,9 +7,9 @@ import { z } from "zod";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Ironspan Construction" },
-      { name: "description", content: "Get in touch with Ironspan Construction. Office, phone, email, and contact form." },
-      { property: "og:title", content: "Contact — Ironspan Construction" },
+      { title: "Contact — Chiguru Builders" },
+      { name: "description", content: "Get in touch with Chiguru Builders. Office, phone, email, and contact form." },
+      { property: "og:title", content: "Contact — Chiguru Builders" },
       { property: "og:description", content: "Reach out to our team — we respond within one business day." },
     ],
   }),
@@ -58,7 +58,7 @@ function ContactPage() {
           {[
           { Icon: MapPin, t: "Office", d: "HSR Layout, Bengaluru — 560102" },
             { Icon: Phone, t: "Phone", d: "+91 80 4567 8910" },
-            { Icon: Mail, t: "Email", d: "hello@ironspan.in" },
+            { Icon: Mail, t: "Email", d: "hello@chigurubuilders.in" },
             { Icon: Clock, t: "Hours", d: "Mon–Sat, 9am–7pm IST" },
           ].map(({ Icon, t, d }) => (
             <div key={t} className="flex items-start gap-4 border border-border bg-card p-6">

@@ -7,9 +7,9 @@ import { CheckCircle2 } from "lucide-react";
 export const Route = createFileRoute("/quote")({
   head: () => ({
     meta: [
-      { title: "Get a Quote — Ironspan Construction" },
-      { name: "description", content: "Request a free, no-obligation construction quote from Ironspan. We respond within one business day." },
-      { property: "og:title", content: "Get a Quote — Ironspan Construction" },
+      { title: "Get a Quote — Chiguru Builders" },
+      { name: "description", content: "Request a free, no-obligation construction quote from Chiguru Builders. We respond within one business day." },
+      { property: "og:title", content: "Get a Quote — Chiguru Builders" },
       { property: "og:description", content: "Tell us about your project and we'll respond within one business day." },
     ],
   }),
