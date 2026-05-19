@@ -97,7 +97,7 @@ function QuotePage() {
                 <Select label="Project Type" name="projectType" error={errors.projectType}
                   options={["Residential — Custom Home", "Residential — Renovation", "Commercial — New Build", "Commercial — Tenant Improvement", "Industrial / Warehouse", "Other"]} />
                 <Select label="Estimated Budget" name="budget" error={errors.budget}
-                  options={["Under $250K", "$250K – $1M", "$1M – $5M", "$5M – $20M", "$20M+"]} />
+                  options={["Under ₹25 Lakh", "₹25L – ₹1 Crore", "₹1 – 5 Crore", "₹5 – 20 Crore", "₹20 Crore+"]} />
                 <Select label="Timeline" name="timeline" error={errors.timeline}
                   options={["ASAP", "1–3 months", "3–6 months", "6–12 months", "Just exploring"]} />
               </div>

@@ -35,39 +35,40 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/30" />
         <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-40">
           <span className="inline-flex items-center gap-2 border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
-            <span className="h-1.5 w-1.5 bg-accent" /> Building since 2008
+            <span className="h-1.5 w-1.5 bg-accent" /> New in Bengaluru · Taking on our first projects
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-            We build what others <span className="text-accent">only draw.</span>
+            Bengaluru's newest builders — <span className="text-accent">ready to break ground.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
-            From custom homes to landmark commercial developments, Ironspan delivers
-            uncompromising craftsmanship — on time, on budget, every project.
+            We're a young construction firm in Bengaluru building homes, offices and
+            commercial spaces with modern project management and honest pricing.
+            Be one of our founding clients.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               to="/quote"
               className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
             >
-              Get a Free Quote <ArrowRight className="h-4 w-4" />
+              Get a Free Estimate <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/projects"
               className="inline-flex items-center gap-2 border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary-foreground/10"
             >
-              View Our Work
+              What We Offer
             </Link>
           </div>
         </div>
 
-        {/* Stats strip */}
+        {/* Founding promises */}
         <div className="relative border-t border-primary-foreground/10 bg-primary/95">
           <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-primary-foreground/10 px-6 md:grid-cols-4">
             {[
-              ["240+", "Projects Delivered"],
-              ["17yrs", "In Business"],
-              ["$420M", "Built Value"],
-              ["98%", "On-Time Delivery"],
+              ["Bengaluru", "Locally Founded"],
+              ["0 → 1", "Founding Projects Open"],
+              ["10%", "Off for First 5 Clients"],
+              ["48 hrs", "Quote Turnaround"],
             ].map(([n, l]) => (
               <div key={l} className="py-8 pl-6 first:pl-0">
                 <div className="font-display text-3xl font-bold text-accent md:text-4xl">{n}</div>
@@ -139,22 +140,26 @@ function Index() {
         </div>
       </section>
 
-      {/* Featured projects */}
+      {/* What we can build */}
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Recent work</span>
-            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Featured projects.</h2>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we can build</span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Project types we're ready for.</h2>
+            <p className="mt-3 max-w-xl text-muted-foreground">
+              Our portfolio is just getting started. Here's the scope of work our
+              founding team has hands-on experience delivering.
+            </p>
           </div>
-          <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
-            See full portfolio <ArrowRight className="h-4 w-4" />
+          <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
+            See all services <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
-            { img: residentialImg, cat: "Residential", title: "Cliffside Residence", loc: "Pacific Heights" },
-            { img: commercialImg, cat: "Commercial", title: "Foundry Tower", loc: "Downtown Core" },
-            { img: industrialImg, cat: "Industrial", title: "Northgate Distribution", loc: "Port District" },
+            { img: residentialImg, cat: "Residential", title: "Independent Homes & Villas", loc: "G+2 builds, plot to handover" },
+            { img: commercialImg, cat: "Commercial", title: "Office & Retail Fit-outs", loc: "Bengaluru tech corridors" },
+            { img: industrialImg, cat: "Industrial", title: "Warehouse & Light Industrial", loc: "Peripheral ring-road belt" },
           ].map((p) => (
             <div key={p.title} className="group overflow-hidden border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">

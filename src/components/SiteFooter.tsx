@@ -13,8 +13,8 @@ export function SiteFooter() {
             IRONSPAN
           </div>
           <p className="mt-4 max-w-sm text-sm text-primary-foreground/70">
-            Building landmark residential and commercial projects with precision,
-            integrity, and craftsmanship since day one.
+            A new Bengaluru construction firm building homes, offices, and commercial
+            spaces with honesty, craft, and modern project management.
           </p>
         </div>
         <div>
@@ -29,16 +29,16 @@ export function SiteFooter() {
         <div>
           <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-accent">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm text-primary-foreground/70">
-            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-accent" />1240 Foundry Ave, Suite 300</li>
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-accent" />(555) 248-9100</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" />build@ironspan.co</li>
+            <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-accent" />HSR Layout, Bengaluru — 560102</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-accent" />+91 80 4567 8910</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-accent" />hello@ironspan.in</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-6 text-xs text-primary-foreground/50 md:flex-row">
-          <span>© {new Date().getFullYear()} Ironspan Construction. All rights reserved.</span>
-          <span>Licensed • Bonded • Insured</span>
+          <span>© {new Date().getFullYear()} Ironspan Construction Pvt. Ltd. · Bengaluru, India</span>
+          <span>GST Registered · MSME Udyam · Site Insured</span>
         </div>
       </div>
     </footer>
