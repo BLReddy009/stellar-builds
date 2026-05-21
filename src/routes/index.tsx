@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Award, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Zap, Check, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Testimonials } from "@/components/Testimonials";
 import heroImg from "@/assets/hero-construction.jpg";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Chiguru Builders — Residential & Commercial Builders" },
-      { name: "description", content: "Chiguru Builders builds award-winning residential and commercial projects on time and on budget. Request a free quote today." },
+      { name: "description", content: "Chiguru Builders — a new generation of engineers building residential and commercial projects on time and on budget. Request a free quote today." },
       { property: "og:title", content: "Chiguru Builders" },
       { property: "og:description", content: "Residential & commercial builders. Request a free quote." },
     ],
@@ -127,7 +127,7 @@ function Index() {
             {[
               { Icon: ShieldCheck, t: "Licensed & Insured", d: "Full coverage, every project." },
               { Icon: Clock, t: "On-Time Delivery", d: "98% milestone accuracy." },
-              { Icon: Award, t: "Award-Winning", d: "12 industry honors since 2018." },
+              { Icon: Zap, t: "New-Gen Engineers", d: "Modern methods, fresh thinking, relentless execution." },
               { Icon: Hammer, t: "Master Craftsmen", d: "In-house experienced crews." },
             ].map(({ Icon, t, d }) => (
               <div key={t} className="border border-border bg-card p-6">
