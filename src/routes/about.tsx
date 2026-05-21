@@ -48,6 +48,8 @@ function AboutPage() {
         ))}
       </section>
 
+      <TeamSection />
+
       <Testimonials variant="dark" />
 
       <section className="bg-primary text-primary-foreground">
