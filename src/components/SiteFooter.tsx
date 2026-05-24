@@ -39,7 +39,10 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-6 text-xs text-primary-foreground/50 md:flex-row">
           <span>© {new Date().getFullYear()} Chiguru Builders Pvt. Ltd. · Bengaluru, India</span>
-          <span>GST Registered · MSME Udyam · Site Insured</span>
+          <span className="flex items-center gap-3">
+            GST Registered · MSME Udyam · Site Insured
+            <Link to="/login" className="text-primary-foreground/40 hover:text-accent">Admin</Link>
+          </span>
         </div>
       </div>
     </footer>
