@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/lib/useAdmin";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Loader2, Plus, Trash2, Save, LogOut, Upload } from "lucide-react";
+import { Loader2, Plus, Trash2, Save, LogOut, Upload, ImagePlus, X } from "lucide-react";
 
 type Member = {
   id: string;
