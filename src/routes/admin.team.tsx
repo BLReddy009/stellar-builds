@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/lib/useAdmin";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Loader2, Plus, Trash2, Save, LogOut, Upload } from "lucide-react";
+import { Loader2, Plus, Trash2, Save, LogOut, Upload, ImagePlus, X } from "lucide-react";
 
 type Member = {
   id: string;
@@ -177,6 +177,65 @@ function MemberCard({
   const [draft, setDraft] = useState(member);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const displayUrl = previewUrl ?? draft.photo_url;
+
+  const handleFile = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please drop an image file.");
+      return;
+    }
+    const localUrl = URL.createObjectURL(file);
+    setPreviewUrl(localUrl);
+    setUploading(true);
+    const ext = file.name.split(".").pop() ?? "jpg";
+    const path = `${draft.id}/${Date.now()}.${ext}`;
+    const { error: upErr } = await supabase.storage
+      .from("team-photos")
+      .upload(path, file, { upsert: true, contentType: file.type });
+    if (upErr) {
+      setUploading(false);
+      toast.error(upErr.message);
+      return;
+    }
+    const { data } = supabase.storage.from("team-photos").getPublicUrl(path);
+    setDraft((d) => ({ ...d, photo_url: data.publicUrl }));
+    setUploading(false);
+    toast.success("Photo uploaded — click Save to apply.");
+  };
+
+  const clearPreview = () => {
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    setPreviewUrl(null);
+  };
+
+  const onDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+      const file = e.dataTransfer.files?.[0];
+      if (file) void handleFile(file);
+    },
+    [draft.id],
+  );
+
+  const onDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  }, []);
+
+  const onDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  }, []);
 
   const save = async () => {
     setSaving(true);
@@ -194,6 +253,7 @@ function MemberCard({
     setSaving(false);
     if (error) return toast.error(error.message);
     toast.success("Saved");
+    clearPreview();
     onChange(draft);
   };
 
@@ -205,49 +265,74 @@ function MemberCard({
     onDelete();
   };
 
-  const uploadPhoto = async (file: File) => {
-    setUploading(true);
-    const ext = file.name.split(".").pop() ?? "jpg";
-    const path = `${draft.id}/${Date.now()}.${ext}`;
-    const { error: upErr } = await supabase.storage
-      .from("team-photos")
-      .upload(path, file, { upsert: true, contentType: file.type });
-    if (upErr) {
-      setUploading(false);
-      return toast.error(upErr.message);
-    }
-    const { data } = supabase.storage.from("team-photos").getPublicUrl(path);
-    setDraft((d) => ({ ...d, photo_url: data.publicUrl }));
-    setUploading(false);
-    toast.success("Photo uploaded — click Save to apply.");
-  };
-
   return (
     <div className="grid gap-6 border border-border bg-card p-6 md:grid-cols-[200px_1fr]">
       <div>
-        <div className="aspect-[4/5] overflow-hidden bg-muted">
-          {draft.photo_url ? (
-            <img src={draft.photo_url} alt={draft.name} className="h-full w-full object-cover" />
+        <div
+          className={
+            "relative aspect-[4/5] overflow-hidden bg-muted transition-colors " +
+            (isDragging ? "border-2 border-dashed border-primary bg-primary/10" : "")
+          }
+          onDrop={onDrop}
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+        >
+          {displayUrl ? (
+            <img src={displayUrl} alt={draft.name} className="h-full w-full object-cover" />
           ) : (
-            <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
-              No photo
+            <div className="flex h-full flex-col items-center justify-center gap-2 text-muted-foreground">
+              <ImagePlus className="h-8 w-8 opacity-50" />
+              <span className="text-xs">Drag & drop photo here</span>
+            </div>
+          )}
+
+          {isDragging && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-primary/20 backdrop-blur-sm">
+              <Upload className="h-10 w-10 text-primary" />
+            </div>
+          )}
+
+          {previewUrl && (
+            <button
+              type="button"
+              onClick={clearPreview}
+              className="absolute right-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
+              title="Cancel preview"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          )}
+
+          {uploading && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
+              <Loader2 className="h-6 w-6 animate-spin text-white" />
             </div>
           )}
         </div>
-        <label className="mt-3 inline-flex w-full cursor-pointer items-center justify-center gap-2 border border-border bg-background px-3 py-2 text-xs font-medium hover:bg-muted">
-          {uploading ? <Loader2 className="h-3 w-3 animate-spin" /> : <Upload className="h-3 w-3" />}
-          {uploading ? "Uploading…" : "Upload photo"}
+
+        <div className="mt-3 flex gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="flex-1 text-xs"
+            onClick={() => fileInputRef.current?.click()}
+          >
+            <Upload className="mr-1 h-3 w-3" />
+            {uploading ? "Uploading…" : "Choose file"}
+          </Button>
           <input
+            ref={fileInputRef}
             type="file"
             accept="image/*"
             className="hidden"
             onChange={(e) => {
               const f = e.target.files?.[0];
-              if (f) void uploadPhoto(f);
+              if (f) void handleFile(f);
               e.target.value = "";
             }}
           />
-        </label>
+        </div>
       </div>
 
       <div className="space-y-3">
