@@ -14,6 +14,144 @@ export type Database = {
   }
   public: {
     Tables: {
+      packages: {
+        Row: {
+          created_at: string
+          cta: string
+          description: string
+          display_order: number
+          features: Json
+          highlighted: boolean
+          id: string
+          image_url: string | null
+          name: string
+          price: string
+          tag: string
+          timeline: string
+          unit: string
+          updated_at: string
+          warranty: string
+        }
+        Insert: {
+          created_at?: string
+          cta?: string
+          description?: string
+          display_order?: number
+          features?: Json
+          highlighted?: boolean
+          id?: string
+          image_url?: string | null
+          name: string
+          price?: string
+          tag?: string
+          timeline?: string
+          unit?: string
+          updated_at?: string
+          warranty?: string
+        }
+        Update: {
+          created_at?: string
+          cta?: string
+          description?: string
+          display_order?: number
+          features?: Json
+          highlighted?: boolean
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: string
+          tag?: string
+          timeline?: string
+          unit?: string
+          updated_at?: string
+          warranty?: string
+        }
+        Relationships: []
+      }
+      portfolio_items: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          display_order: number
+          id: string
+          image_url: string | null
+          location: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          location?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          location?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string
+          display_order: number
+          icon: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon?: string
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       team_members: {
         Row: {
           bio: string
