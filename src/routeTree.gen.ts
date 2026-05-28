@@ -20,6 +20,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminTeamRouteImport } from './routes/admin.team'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
+import { Route as AdminProjectsRouteImport } from './routes/admin.projects'
+import { Route as AdminPackagesRouteImport } from './routes/admin.packages'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -76,6 +79,21 @@ const AdminTeamRoute = AdminTeamRouteImport.update({
   path: '/admin/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/admin/services',
+  path: '/admin/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/admin/projects',
+  path: '/admin/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPackagesRoute = AdminPackagesRouteImport.update({
+  id: '/admin/packages',
+  path: '/admin/packages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +105,9 @@ export interface FileRoutesByFullPath {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -100,6 +121,9 @@ export interface FileRoutesByTo {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -114,6 +138,9 @@ export interface FileRoutesById {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/projects': typeof AdminProjectsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/team': typeof AdminTeamRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -129,6 +156,9 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/packages'
+    | '/admin/projects'
+    | '/admin/services'
     | '/admin/team'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +172,9 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/packages'
+    | '/admin/projects'
+    | '/admin/services'
     | '/admin/team'
     | '/admin'
   id:
@@ -155,6 +188,9 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/packages'
+    | '/admin/projects'
+    | '/admin/services'
     | '/admin/team'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -169,6 +205,9 @@ export interface RootRouteChildren {
   QuoteRoute: typeof QuoteRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  AdminPackagesRoute: typeof AdminPackagesRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   AdminTeamRoute: typeof AdminTeamRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -252,6 +291,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/admin/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/admin/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/packages': {
+      id: '/admin/packages'
+      path: '/admin/packages'
+      fullPath: '/admin/packages'
+      preLoaderRoute: typeof AdminPackagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -265,6 +325,9 @@ const rootRouteChildren: RootRouteChildren = {
   QuoteRoute: QuoteRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  AdminPackagesRoute: AdminPackagesRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
+  AdminServicesRoute: AdminServicesRoute,
   AdminTeamRoute: AdminTeamRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
