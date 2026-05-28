@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ElementType } from "react";
+import { createElement, useEffect, useRef, useState, type ElementType } from "react";
 import { useEditableEnabled, useSiteContent } from "@/lib/cms";
 import { toast } from "sonner";
 import { Pencil } from "lucide-react";
@@ -18,7 +18,7 @@ export function EditableText({
   multiline,
   className,
 }: Props) {
-  const Tag = (as ?? (multiline ? "p" : "span")) as ElementType;
+  const Tag: ElementType = as ?? (multiline ? "p" : "span");
   const { get, set, loaded } = useSiteContent();
   const canEdit = useEditableEnabled();
   const value = loaded ? get(contentKey, defaultValue) : defaultValue;
@@ -100,26 +100,31 @@ export function EditableText({
   }
 
   if (canEdit) {
-    return (
-      <Tag
-        className={
+    return createElement(
+      Tag,
+      {
+        className:
           (className ?? "") +
-          " group relative cursor-text rounded-sm outline outline-1 outline-dashed outline-accent/40 transition hover:outline-accent"
-        }
-        onClick={(e: any) => {
+          " group relative cursor-text rounded-sm outline outline-1 outline-dashed outline-accent/40 transition hover:outline-accent",
+        onClick: (e: any) => {
           e.stopPropagation();
           e.preventDefault();
           setEditing(true);
-        }}
-        title="Click to edit"
-      >
-        {value}
-        <span className="pointer-events-none absolute -right-2 -top-2 hidden h-5 w-5 items-center justify-center rounded-full bg-accent text-accent-foreground shadow group-hover:flex">
-          <Pencil className="h-3 w-3" />
-        </span>
-      </Tag>
+        },
+        title: "Click to edit",
+      },
+      value,
+      createElement(
+        "span",
+        {
+          key: "icon",
+          className:
+            "pointer-events-none absolute -right-2 -top-2 hidden h-5 w-5 items-center justify-center rounded-full bg-accent text-accent-foreground shadow group-hover:flex",
+        },
+        createElement(Pencil, { className: "h-3 w-3" }),
+      ),
     );
   }
 
-  return <Tag className={className}>{value}</Tag>;
+  return createElement(Tag, { className }, value);
 }
