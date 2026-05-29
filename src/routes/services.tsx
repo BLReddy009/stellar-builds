@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { EditableText } from "@/components/admin/EditableText";
 import { Home, Building2, Factory, Hammer, Ruler, Wrench, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
@@ -28,26 +29,35 @@ function ServicesPage() {
     <SiteLayout>
       <section className="border-b border-border bg-secondary">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Services</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <EditableText contentKey="services.hero.eyebrow" defaultValue="Services" />
+          </span>
           <h1 className="mt-3 max-w-3xl font-display text-5xl font-bold md:text-6xl">
-            Full-service construction, start to finish.
+            <EditableText contentKey="services.hero.title" defaultValue="Full-service construction, start to finish." />
           </h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground">
-            Whether you're planning a custom home or a multi-story commercial build,
-            our integrated teams cover every phase with precision.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="services.hero.desc"
+            defaultValue="Whether you're planning a custom home or a multi-story commercial build, our integrated teams cover every phase with precision."
+            className="mt-6 max-w-2xl text-muted-foreground"
+          />
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ Icon, title, desc }) => (
+          {services.map(({ Icon, title, desc }, i) => (
             <div key={title} className="border border-border bg-card p-8 transition hover:border-accent">
               <div className="flex h-12 w-12 items-center justify-center bg-accent/10">
                 <Icon className="h-6 w-6 text-accent" />
               </div>
-              <h3 className="mt-6 font-display text-xl font-semibold">{title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
+              <h3 className="mt-6 font-display text-xl font-semibold">
+                <EditableText contentKey={`services.card.${i}.title`} defaultValue={title} />
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                <EditableText contentKey={`services.card.${i}.desc`} defaultValue={desc} multiline />
+              </p>
             </div>
           ))}
         </div>
@@ -55,9 +65,11 @@ function ServicesPage() {
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-16 md:flex-row md:items-center">
-          <h2 className="font-display text-3xl font-bold md:text-4xl">Don't see your project type?</h2>
+          <h2 className="font-display text-3xl font-bold md:text-4xl">
+            <EditableText contentKey="services.cta.title" defaultValue="Don't see your project type?" />
+          </h2>
           <Link to="/contact" className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:brightness-95">
-            Get in touch <ArrowRight className="h-4 w-4" />
+            <EditableText contentKey="services.cta.btn" defaultValue="Get in touch" /> <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

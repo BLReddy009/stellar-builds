@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, Home, Factory, Hammer, ShieldCheck, Clock, Zap, Check, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Testimonials } from "@/components/Testimonials";
+import { EditableText } from "@/components/admin/EditableText";
 import heroImg from "@/assets/hero-construction.jpg";
 import residentialImg from "@/assets/project-residential.jpg";
 import commercialImg from "@/assets/project-commercial.jpg";
@@ -35,28 +36,32 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/30" />
         <div className="relative mx-auto max-w-7xl px-6 py-28 md:py-40">
           <span className="inline-flex items-center gap-2 border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
-            <span className="h-1.5 w-1.5 bg-accent" /> New in Bengaluru · Taking on our first projects
+            <span className="h-1.5 w-1.5 bg-accent" />
+            <EditableText contentKey="home.hero.eyebrow" defaultValue="New in Bengaluru · Taking on our first projects" />
           </span>
           <h1 className="mt-6 max-w-3xl font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-            Bengaluru's newest builders — <span className="text-accent">ready to break ground.</span>
+            <EditableText contentKey="home.hero.title.a" defaultValue="Bengaluru's newest builders — " />
+            <span className="text-accent"><EditableText contentKey="home.hero.title.b" defaultValue="ready to break ground." /></span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
-            We're a young construction firm in Bengaluru building homes, offices and
-            commercial spaces with modern project management and honest pricing.
-            Be one of our founding clients.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="home.hero.subtitle"
+            defaultValue="We're a young construction firm in Bengaluru building homes, offices and commercial spaces with modern project management and honest pricing. Be one of our founding clients."
+            className="mt-6 max-w-xl text-lg text-primary-foreground/80"
+          />
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               to="/quote"
               className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
             >
-              Get a Free Estimate <ArrowRight className="h-4 w-4" />
+              <EditableText contentKey="home.hero.cta1" defaultValue="Get a Free Estimate" /> <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/projects"
               className="inline-flex items-center gap-2 border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary-foreground/10"
             >
-              What We Offer
+              <EditableText contentKey="home.hero.cta2" defaultValue="What We Offer" />
             </Link>
           </div>
         </div>
@@ -69,10 +74,14 @@ function Index() {
               ["0 → 1", "Founding Projects Open"],
               ["10%", "Off for First 5 Clients"],
               ["48 hrs", "Quote Turnaround"],
-            ].map(([n, l]) => (
+            ].map(([n, l], i) => (
               <div key={l} className="py-8 pl-6 first:pl-0">
-                <div className="font-display text-3xl font-bold text-accent md:text-4xl">{n}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-primary-foreground/60">{l}</div>
+                <div className="font-display text-3xl font-bold text-accent md:text-4xl">
+                  <EditableText contentKey={`home.stats.${i}.n`} defaultValue={n} />
+                </div>
+                <div className="mt-1 text-xs uppercase tracking-wider text-primary-foreground/60">
+                  <EditableText contentKey={`home.stats.${i}.l`} defaultValue={l} />
+                </div>
               </div>
             ))}
           </div>
@@ -83,13 +92,15 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we do</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+              <EditableText contentKey="home.services.eyebrow" defaultValue="What we do" />
+            </span>
             <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-              End-to-end construction expertise.
+              <EditableText contentKey="home.services.title" defaultValue="End-to-end construction expertise." />
             </h2>
           </div>
           <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
-            Explore all services <ArrowRight className="h-4 w-4" />
+            <EditableText contentKey="home.services.cta" defaultValue="Explore all services" /> <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -97,11 +108,15 @@ function Index() {
             { Icon: Home, title: "Residential", desc: "Custom homes, multi-family, and renovations crafted to last generations." },
             { Icon: Building2, title: "Commercial", desc: "Offices, retail, and mixed-use developments built for performance." },
             { Icon: Factory, title: "Industrial", desc: "Warehouses and facilities engineered for scale and efficiency." },
-          ].map(({ Icon, title, desc }) => (
+          ].map(({ Icon, title, desc }, i) => (
             <div key={title} className="group border border-border bg-card p-8 transition hover:border-accent">
               <Icon className="h-8 w-8 text-accent" />
-              <h3 className="mt-6 font-display text-xl font-semibold">{title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{desc}</p>
+              <h3 className="mt-6 font-display text-xl font-semibold">
+                <EditableText contentKey={`home.services.card.${i}.title`} defaultValue={title} />
+              </h3>
+              <p className="mt-3 text-sm text-muted-foreground">
+                <EditableText contentKey={`home.services.card.${i}.desc`} defaultValue={desc} multiline />
+              </p>
             </div>
           ))}
         </div>
@@ -111,16 +126,21 @@ function Index() {
       <section className="bg-secondary py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">Why Chiguru Builders</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+              <EditableText contentKey="home.why.eyebrow" defaultValue="Why Chiguru Builders" />
+            </span>
             <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-              A builder you can trust with your blueprint.
+              <EditableText contentKey="home.why.title" defaultValue="A builder you can trust with your blueprint." />
             </h2>
-            <p className="mt-6 text-muted-foreground">
-              We combine field-tested craftsmanship with modern project management
-              to deliver buildings that owners are proud of and tenants love.
-            </p>
+            <EditableText
+              as="p"
+              multiline
+              contentKey="home.why.desc"
+              defaultValue="We combine field-tested craftsmanship with modern project management to deliver buildings that owners are proud of and tenants love."
+              className="mt-6 text-muted-foreground"
+            />
             <Link to="/about" className="mt-8 inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110">
-              Learn about us <ArrowRight className="h-4 w-4" />
+              <EditableText contentKey="home.why.cta" defaultValue="Learn about us" /> <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -129,11 +149,15 @@ function Index() {
               { Icon: Clock, t: "On-Time Delivery", d: "98% milestone accuracy." },
               { Icon: Zap, t: "New-Gen Engineers", d: "Modern methods, fresh thinking, relentless execution." },
               { Icon: Hammer, t: "Master Craftsmen", d: "In-house experienced crews." },
-            ].map(({ Icon, t, d }) => (
+            ].map(({ Icon, t, d }, i) => (
               <div key={t} className="border border-border bg-card p-6">
                 <Icon className="h-6 w-6 text-accent" />
-                <div className="mt-4 font-display text-base font-semibold">{t}</div>
-                <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+                <div className="mt-4 font-display text-base font-semibold">
+                  <EditableText contentKey={`home.why.card.${i}.t`} defaultValue={t} />
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  <EditableText contentKey={`home.why.card.${i}.d`} defaultValue={d} />
+                </p>
               </div>
             ))}
           </div>
@@ -147,15 +171,22 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent">What we can build</span>
-            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">Project types we're ready for.</h2>
-            <p className="mt-3 max-w-xl text-muted-foreground">
-              Our portfolio is just getting started. Here's the scope of work our
-              founding team has hands-on experience delivering.
-            </p>
+            <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+              <EditableText contentKey="home.types.eyebrow" defaultValue="What we can build" />
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
+              <EditableText contentKey="home.types.title" defaultValue="Project types we're ready for." />
+            </h2>
+            <EditableText
+              as="p"
+              multiline
+              contentKey="home.types.desc"
+              defaultValue="Our portfolio is just getting started. Here's the scope of work our founding team has hands-on experience delivering."
+              className="mt-3 max-w-xl text-muted-foreground"
+            />
           </div>
           <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
-            See all services <ArrowRight className="h-4 w-4" />
+            <EditableText contentKey="home.types.cta" defaultValue="See all services" /> <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -163,15 +194,21 @@ function Index() {
             { img: residentialImg, cat: "Residential", title: "Independent Homes & Villas", loc: "G+2 builds, plot to handover" },
             { img: commercialImg, cat: "Commercial", title: "Office & Retail Fit-outs", loc: "Bengaluru tech corridors" },
             { img: industrialImg, cat: "Industrial", title: "Warehouse & Light Industrial", loc: "Peripheral ring-road belt" },
-          ].map((p) => (
+          ].map((p, i) => (
             <div key={p.title} className="group overflow-hidden border border-border bg-card">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={p.img} alt={p.title} loading="lazy" width={1280} height={960} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold uppercase tracking-wider text-accent">{p.cat}</span>
-                <h3 className="mt-2 font-display text-lg font-semibold">{p.title}</h3>
-                <p className="text-sm text-muted-foreground">{p.loc}</p>
+                <span className="text-xs font-semibold uppercase tracking-wider text-accent">
+                  <EditableText contentKey={`home.types.card.${i}.cat`} defaultValue={p.cat} />
+                </span>
+                <h3 className="mt-2 font-display text-lg font-semibold">
+                  <EditableText contentKey={`home.types.card.${i}.title`} defaultValue={p.title} />
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  <EditableText contentKey={`home.types.card.${i}.loc`} defaultValue={p.loc} />
+                </p>
               </div>
             </div>
           ))}
@@ -183,14 +220,24 @@ function Index() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 md:flex md:items-center md:justify-between md:gap-12">
           <div>
-            <h2 className="font-display text-3xl font-bold md:text-5xl">Ready to break ground?</h2>
-            <p className="mt-4 max-w-xl text-primary-foreground/70">
-              Tell us about your project. We'll respond within one business day with next steps and a no-obligation estimate.
-            </p>
+            <h2 className="font-display text-3xl font-bold md:text-5xl">
+              <EditableText contentKey="home.cta.title" defaultValue="Ready to break ground?" />
+            </h2>
+            <EditableText
+              as="p"
+              multiline
+              contentKey="home.cta.desc"
+              defaultValue="Tell us about your project. We'll respond within one business day with next steps and a no-obligation estimate."
+              className="mt-4 max-w-xl text-primary-foreground/70"
+            />
           </div>
           <div className="mt-8 flex flex-wrap gap-3 md:mt-0">
-            <Link to="/quote" className="bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground hover:brightness-95">Get a Quote</Link>
-            <Link to="/contact" className="border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10">Contact Us</Link>
+            <Link to="/quote" className="bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground hover:brightness-95">
+              <EditableText contentKey="home.cta.btn1" defaultValue="Get a Quote" />
+            </Link>
+            <Link to="/contact" className="border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold hover:bg-primary-foreground/10">
+              <EditableText contentKey="home.cta.btn2" defaultValue="Contact Us" />
+            </Link>
           </div>
         </div>
       </section>
@@ -208,17 +255,22 @@ function PlansTeaser() {
     <div>
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Build packages</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <EditableText contentKey="home.plans.eyebrow" defaultValue="Build packages" />
+          </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-            Silver, Gold or Platinum — your call.
+            <EditableText contentKey="home.plans.title" defaultValue="Silver, Gold or Platinum — your call." />
           </h2>
-          <p className="mt-3 text-muted-foreground">
-            Three transparent tiers with itemised material brands and service levels.
-            Mix and match if you need a custom spec.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="home.plans.desc"
+            defaultValue="Three transparent tiers with itemised material brands and service levels. Mix and match if you need a custom spec."
+            className="mt-3 text-muted-foreground"
+          />
         </div>
         <Link to="/plans" className="inline-flex items-center gap-2 text-sm font-semibold hover:text-accent">
-          Compare all packages <ArrowRight className="h-4 w-4" />
+          <EditableText contentKey="home.plans.cta" defaultValue="Compare all packages" /> <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
       <div className="mt-12 grid gap-6 md:grid-cols-3">

@@ -1,4 +1,5 @@
 import { Quote, ShieldCheck, IndianRupee, Hammer } from "lucide-react";
+import { EditableText } from "@/components/admin/EditableText";
 
 const promises = [
   {
@@ -31,19 +32,22 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-widest text-accent">
-            Why trust a new firm
+            <EditableText contentKey="testimonials.eyebrow" defaultValue="Why trust a new firm" />
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold md:text-5xl">
-            No testimonials yet — but a clear set of promises.
+            <EditableText contentKey="testimonials.title" defaultValue="No testimonials yet — but a clear set of promises." />
           </h2>
-          <p className={`mt-4 ${isDark ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-            We won't fake reviews we haven't earned. Instead, here's exactly what
-            every founding client of our Bengaluru firm can count on from day one.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="testimonials.desc"
+            defaultValue="We won't fake reviews we haven't earned. Instead, here's exactly what every founding client of our Bengaluru firm can count on from day one."
+            className={`mt-4 ${isDark ? "text-primary-foreground/70" : "text-muted-foreground"}`}
+          />
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {promises.map((t) => (
+          {promises.map((t, i) => (
             <figure
               key={t.name}
               className={`relative flex flex-col border p-8 ${
@@ -57,12 +61,14 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
                 <Quote className="h-5 w-5 text-accent/50" />
               </div>
               <blockquote className={`mt-4 flex-1 text-sm leading-relaxed ${isDark ? "text-primary-foreground/85" : "text-foreground/85"}`}>
-                "{t.quote}"
+                "<EditableText contentKey={`testimonials.${i}.quote`} defaultValue={t.quote} multiline />"
               </blockquote>
               <figcaption className="mt-6 border-t border-border/40 pt-4">
-                <div className="font-display text-sm font-semibold">{t.name}</div>
+                <div className="font-display text-sm font-semibold">
+                  <EditableText contentKey={`testimonials.${i}.name`} defaultValue={t.name} />
+                </div>
                 <div className={`text-xs ${isDark ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
-                  {t.role}
+                  <EditableText contentKey={`testimonials.${i}.role`} defaultValue={t.role} />
                 </div>
               </figcaption>
             </figure>
@@ -80,11 +86,13 @@ export function Testimonials({ variant = "light" }: { variant?: "light" | "dark"
             ["MSME", "Udyam Recognised"],
             ["Insured", "Site & Liability Cover"],
             ["Bengaluru", "Local Team On-Site"],
-          ].map(([a, b]) => (
+          ].map(([a, b], i) => (
             <div key={a}>
-              <div className="font-display text-2xl font-bold text-accent">{a}</div>
+              <div className="font-display text-2xl font-bold text-accent">
+                <EditableText contentKey={`testimonials.trust.${i}.a`} defaultValue={a} />
+              </div>
               <div className={`text-xs uppercase tracking-wider ${isDark ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
-                {b}
+                <EditableText contentKey={`testimonials.trust.${i}.b`} defaultValue={b} />
               </div>
             </div>
           ))}
