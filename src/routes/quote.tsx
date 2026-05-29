@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { EditableText } from "@/components/admin/EditableText";
 import { useState } from "react";
 import { z } from "zod";
 import { CheckCircle2, Wrench } from "lucide-react";
@@ -97,31 +98,42 @@ function QuotePage() {
     <SiteLayout>
       <section className="border-b border-border bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Get a Quote</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <EditableText contentKey="quote.hero.eyebrow" defaultValue="Get a Quote" />
+          </span>
           <h1 className="mt-3 max-w-3xl font-display text-5xl font-bold md:text-6xl">
-            Tell us about your project.
+            <EditableText contentKey="quote.hero.title" defaultValue="Tell us about your project." />
           </h1>
-          <p className="mt-6 max-w-2xl text-primary-foreground/70">
-            Share a few details and we'll respond within one business day with next
-            steps and a no-obligation estimate.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="quote.hero.desc"
+            defaultValue="Share a few details and we'll respond within one business day with next steps and a no-obligation estimate."
+            className="mt-6 max-w-2xl text-primary-foreground/70"
+          />
         </div>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-3">
         <aside className="space-y-6 lg:col-span-1">
-          <h2 className="font-display text-2xl font-semibold">What happens next?</h2>
+          <h2 className="font-display text-2xl font-semibold">
+            <EditableText contentKey="quote.next.title" defaultValue="What happens next?" />
+          </h2>
           <ol className="space-y-5">
             {[
               ["1. We review", "Our team reviews your request within one business day."],
               ["2. Discovery call", "A 20-minute call to understand your goals and constraints."],
               ["3. Estimate", "A clear, itemized quote and proposed timeline — no obligation."],
-            ].map(([t, d]) => (
+            ].map(([t, d], i) => (
               <li key={t} className="flex gap-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
                 <div>
-                  <div className="font-display text-sm font-semibold">{t}</div>
-                  <p className="text-sm text-muted-foreground">{d}</p>
+                  <div className="font-display text-sm font-semibold">
+                    <EditableText contentKey={`quote.next.${i}.t`} defaultValue={t} />
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <EditableText contentKey={`quote.next.${i}.d`} defaultValue={d} />
+                  </p>
                 </div>
               </li>
             ))}
@@ -132,8 +144,16 @@ function QuotePage() {
           {submitted ? (
             <div className="border border-accent bg-accent/10 p-12 text-center">
               <CheckCircle2 className="mx-auto h-10 w-10 text-accent" />
-              <h2 className="mt-4 font-display text-3xl font-semibold">Request received.</h2>
-              <p className="mt-3 text-muted-foreground">Thanks — we'll be in touch within one business day to schedule your discovery call.</p>
+              <h2 className="mt-4 font-display text-3xl font-semibold">
+                <EditableText contentKey="quote.success.title" defaultValue="Request received." />
+              </h2>
+              <EditableText
+                as="p"
+                multiline
+                contentKey="quote.success.desc"
+                defaultValue="Thanks — we'll be in touch within one business day to schedule your discovery call."
+                className="mt-3 text-muted-foreground"
+              />
             </div>
           ) : (
             <form onSubmit={onSubmit} className="space-y-5 border border-border bg-card p-8">
@@ -163,10 +183,16 @@ function QuotePage() {
                     <Wrench className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold">Customise your materials</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Optional — pick exactly what you want and we'll price the build around your spec. Leave on "No preference" and we'll recommend based on your package.
-                    </p>
+                    <h3 className="font-display text-lg font-semibold">
+                      <EditableText contentKey="quote.materials.title" defaultValue="Customise your materials" />
+                    </h3>
+                    <EditableText
+                      as="p"
+                      multiline
+                      contentKey="quote.materials.desc"
+                      defaultValue={'Optional — pick exactly what you want and we\u2019ll price the build around your spec. Leave on "No preference" and we\u2019ll recommend based on your package.'}
+                      className="text-sm text-muted-foreground"
+                    />
                   </div>
                 </div>
                 <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -186,7 +212,7 @@ function QuotePage() {
               </div>
 
               <button type="submit" className="w-full bg-accent px-6 py-4 text-sm font-semibold text-accent-foreground hover:brightness-95">
-                Request Quote
+                <EditableText contentKey="quote.form.submit" defaultValue="Request Quote" />
               </button>
             </form>
           )}

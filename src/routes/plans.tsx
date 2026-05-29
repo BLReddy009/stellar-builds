@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { EditableText } from "@/components/admin/EditableText";
 import { Check, Minus, Sparkles, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/plans")({
@@ -97,14 +98,19 @@ function PlansPage() {
     <SiteLayout>
       <section className="border-b border-border bg-secondary">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Build Packages</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <EditableText contentKey="plans.hero.eyebrow" defaultValue="Build Packages" />
+          </span>
           <h1 className="mt-3 max-w-3xl font-display text-5xl font-bold md:text-6xl">
-            Choose the build that fits your budget.
+            <EditableText contentKey="plans.hero.title" defaultValue="Choose the build that fits your budget." />
           </h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground">
-            Three transparent construction packages with itemised material brands and
-            service levels. No hidden markups — pay for the quality you actually want.
-          </p>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="plans.hero.desc"
+            defaultValue="Three transparent construction packages with itemised material brands and service levels. No hidden markups — pay for the quality you actually want."
+            className="mt-6 max-w-2xl text-muted-foreground"
+          />
         </div>
       </section>
 
@@ -181,23 +187,31 @@ function PlansPage() {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-sm text-muted-foreground">
-          All packages include: structural drawings coordination, BBMP/BDA liaison support,
-          weekly progress reports, and an itemised material bill at every stage.
-        </p>
+        <EditableText
+          as="p"
+          multiline
+          contentKey="plans.footnote"
+          defaultValue="All packages include: structural drawings coordination, BBMP/BDA liaison support, weekly progress reports, and an itemised material bill at every stage."
+          className="mt-10 text-center text-sm text-muted-foreground"
+        />
       </section>
 
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-16 md:flex-row md:items-center">
           <div>
-            <h2 className="font-display text-3xl font-bold md:text-4xl">Need a custom mix?</h2>
-            <p className="mt-2 max-w-xl text-primary-foreground/70">
-              Upgrade flooring on a Silver build, or pick Platinum bathrooms with a Gold base.
-              We'll tailor the spec to your taste.
-            </p>
+            <h2 className="font-display text-3xl font-bold md:text-4xl">
+              <EditableText contentKey="plans.cta.title" defaultValue="Need a custom mix?" />
+            </h2>
+            <EditableText
+              as="p"
+              multiline
+              contentKey="plans.cta.desc"
+              defaultValue="Upgrade flooring on a Silver build, or pick Platinum bathrooms with a Gold base. We'll tailor the spec to your taste."
+              className="mt-2 max-w-xl text-primary-foreground/70"
+            />
           </div>
           <Link to="/quote" className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:brightness-95">
-            Build a custom quote <ArrowRight className="h-4 w-4" />
+            <EditableText contentKey="plans.cta.btn" defaultValue="Build a custom quote" /> <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

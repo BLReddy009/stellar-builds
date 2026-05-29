@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
+import { EditableText } from "@/components/admin/EditableText";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
@@ -45,11 +46,19 @@ function ContactPage() {
     <SiteLayout>
       <section className="border-b border-border bg-secondary">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent">Contact</span>
-          <h1 className="mt-3 font-display text-5xl font-bold md:text-6xl">Let's talk.</h1>
-          <p className="mt-6 max-w-2xl text-muted-foreground">
-            Questions, partnerships, or just want to chat about a project? We typically respond within one business day.
-          </p>
+          <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <EditableText contentKey="contact.hero.eyebrow" defaultValue="Contact" />
+          </span>
+          <h1 className="mt-3 font-display text-5xl font-bold md:text-6xl">
+            <EditableText contentKey="contact.hero.title" defaultValue="Let's talk." />
+          </h1>
+          <EditableText
+            as="p"
+            multiline
+            contentKey="contact.hero.desc"
+            defaultValue="Questions, partnerships, or just want to chat about a project? We typically respond within one business day."
+            className="mt-6 max-w-2xl text-muted-foreground"
+          />
         </div>
       </section>
 
@@ -60,12 +69,16 @@ function ContactPage() {
             { Icon: Phone, t: "Phone", d: "+91 80 4567 8910" },
             { Icon: Mail, t: "Email", d: "hello@chigurubuilders.in" },
             { Icon: Clock, t: "Hours", d: "Mon–Sat, 9am–7pm IST" },
-          ].map(({ Icon, t, d }) => (
+          ].map(({ Icon, t, d }, i) => (
             <div key={t} className="flex items-start gap-4 border border-border bg-card p-6">
               <Icon className="h-5 w-5 text-accent" />
               <div>
-                <div className="font-display text-sm font-semibold uppercase tracking-wider">{t}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{d}</div>
+                <div className="font-display text-sm font-semibold uppercase tracking-wider">
+                  <EditableText contentKey={`contact.info.${i}.t`} defaultValue={t} />
+                </div>
+                <div className="mt-1 text-sm text-muted-foreground">
+                  <EditableText contentKey={`contact.info.${i}.d`} defaultValue={d} />
+                </div>
               </div>
             </div>
           ))}
@@ -74,8 +87,16 @@ function ContactPage() {
         <div className="md:col-span-3">
           {submitted ? (
             <div className="border border-accent bg-accent/10 p-10 text-center">
-              <h2 className="font-display text-2xl font-semibold">Message received.</h2>
-              <p className="mt-3 text-muted-foreground">Thanks for reaching out — our team will respond within one business day.</p>
+              <h2 className="font-display text-2xl font-semibold">
+                <EditableText contentKey="contact.success.title" defaultValue="Message received." />
+              </h2>
+              <EditableText
+                as="p"
+                multiline
+                contentKey="contact.success.desc"
+                defaultValue="Thanks for reaching out — our team will respond within one business day."
+                className="mt-3 text-muted-foreground"
+              />
             </div>
           ) : (
             <form onSubmit={onSubmit} className="space-y-5 border border-border bg-card p-8">
@@ -84,7 +105,7 @@ function ContactPage() {
               <Field label="Subject" name="subject" error={errors.subject} />
               <Field label="Message" name="message" textarea error={errors.message} />
               <button type="submit" className="w-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground hover:brightness-95">
-                Send Message
+                <EditableText contentKey="contact.form.submit" defaultValue="Send Message" />
               </button>
             </form>
           )}
